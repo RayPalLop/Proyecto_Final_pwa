@@ -1,0 +1,197 @@
+/*
+ * Archivo: style.css
+ * Ubicación: /public/css/style.css
+ * Descripción: Hoja de estilos CSS personalizada para el sistema de gestión del gimnasio.
+ * Contiene estilos generales y específicos para los componentes.
+ */
+
+/* Estilos para el cuerpo de la página (body) */
+body {
+    font-family: 'Inter', sans-serif; /* Fuente principal para todo el texto */
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); /* Fondo degradado azul-púrpura */
+    display: flex; /* Usar flexbox para centrar contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    min-height: 100vh; /* Ocupar al menos el 100% de la altura de la ventana */
+    margin: 0; /* Eliminar márgenes predeterminados del body */
+    color: #f0f0f0; /* Color de texto predeterminado para el body (claro para contrastar con el fondo oscuro) */
+}
+
+/* Estilos generales para el contenedor principal de las vistas (como el de Añadir Nuevo Miembro) */
+/* **IMPORTANTE:** Asegúrate de que tu HTML para el formulario de "Añadir Nuevo Miembro" esté dentro de un div con esta clase. */
+.main-content-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco casi opaco para el contenedor del formulario */
+    padding: 40px; /* Espaciado interno */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    max-width: 600px; /* Ancho máximo para el contenedor del formulario */
+    color: #333; /* Color de texto oscuro para los elementos dentro de este contenedor */
+}
+
+/* Estilos para el título "Añadir Nuevo Miembro" y otros h1/h2 no en login-container */
+h1, h2 {
+    color: #333; /* Color de título oscuro */
+    margin-bottom: 30px; /* Margen inferior */
+    text-align: center; /* Centrar texto */
+    font-weight: 700; /* Negrita */
+}
+
+/* Estilos para el contenedor del formulario de login (manteniendo los estilos existentes si lo usas en otras partes) */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo semitransparente blanco */
+    padding: 40px; /* Espaciado interno */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    max-width: 400px; /* Ancho máximo para el contenedor */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque en el fondo (para un efecto de cristal) */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con navegadores WebKit (Safari) */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+    color: #fff; /* Color de texto blanco dentro del contenedor de login */
+}
+
+/* Estilos para los títulos dentro del contenedor de login (si aún lo usas) */
+.login-container h2 {
+    color: #fff; /* Título blanco */
+    margin-bottom: 30px; /* Margen inferior */
+    text-align: center; /* Centrar texto */
+    font-weight: 700; /* Negrita */
+}
+
+/* Estilos para las etiquetas (labels) de los campos de formulario */
+label {
+    color: #555; /* Color de texto para etiquetas */
+    font-weight: 600; /* Negrita ligera */
+    margin-bottom: 8px; /* Espacio debajo de la etiqueta */
+    display: block; /* Para que la etiqueta ocupe su propia línea */
+}
+
+/* Estilos para los campos de formulario (input, select, textarea) */
+.form-control {
+    background-color: #f8f9fa; /* Fondo claro para inputs */
+    border: 1px solid #ced4da; /* Borde gris claro */
+    color: #495057; /* Color de texto oscuro para inputs */
+    padding: 12px 15px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    margin-bottom: 15px; /* Espacio entre campos */
+}
+
+/* Estilos para el texto de ayuda debajo de los campos (ej. "Mínimo 6 caracteres.") */
+.form-text {
+    color: #6c757d; /* Color gris oscuro para el texto de ayuda */
+    font-size: 0.875em; /* Tamaño de fuente ligeramente menor */
+    margin-top: -10px; /* Ajuste para pegarlo al input */
+    margin-bottom: 15px; /* Espacio después del texto de ayuda */
+    display: block; /* Para que ocupe su propia línea */
+}
+
+
+/* Estilos para el placeholder de los inputs */
+.form-control::placeholder {
+    color: #6c757d; /* Color de placeholder gris */
+}
+
+/* Estilos para los inputs cuando están enfocados */
+.form-control:focus {
+    background-color: #fff; /* Fondo blanco al enfocar */
+    border-color: #80bdff; /* Borde azul claro al enfocar */
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque azul */
+    color: #495057; /* Mantener texto oscuro */
+}
+
+/* Estilos para el botón principal (ej. Guardar Miembro, Iniciar Sesión) */
+.btn-primary {
+    background: linear-gradient(to right, #00c6ff 0%, #0072ff 100%); /* Degradado azul para el botón */
+    border: none; /* Sin borde */
+    padding: 12px 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita */
+    transition: all 0.3s ease; /* Transición suave para hover */
+    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4); /* Sombra para el botón */
+    color: #fff; /* Asegurar que el texto del botón sea blanco */
+}
+
+/* Estilos para el botón principal al pasar el ratón por encima (hover) */
+.btn-primary:hover {
+    background: linear-gradient(to right, #0072ff 0%, #00c6ff 100%); /* Invertir degradado al hover */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.6); /* Sombra más pronunciada al hover */
+}
+
+/* Estilos para el botón de cancelar (ej. en el formulario de Añadir Miembro) */
+.btn-secondary {
+    background-color: #6c757d; /* Color gris para el botón secundario */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: #fff; /* Color de texto blanco para el botón secundario */
+    margin-left: 10px; /* Espacio a la izquierda si hay otro botón */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Gris más oscuro al hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+}
+
+/* Estilos para los mensajes de alerta de Bootstrap */
+.alert {
+    border-radius: 8px; /* Bordes redondeados para alertas */
+    text-align: center; /* Centrar texto */
+    font-weight: 600; /* Texto seminegrita */
+}
+
+/* Estilos para el contenedor del dashboard */
+.container.mt-5 {
+    padding-top: 5rem; /* Espaciado superior */
+    padding-bottom: 5rem; /* Espaciado inferior */
+}
+
+/* Estilos para la tarjeta del dashboard */
+.card.shadow-lg {
+    background-color: #fff; /* Fondo blanco para la tarjeta */
+    border: none; /* Sin borde */
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important; /* Sombra más grande */
+}
+
+/* Estilos para el título del dashboard */
+.card-title.text-primary {
+    color: #007bff !important; /* Color azul de Bootstrap */
+}
+
+/* Estilos para el texto del dashboard */
+.card-text.fs-5 {
+    color: #555; /* Color de texto más oscuro */
+}
+
+/* Estilos para los elementos de texto resaltados en el dashboard */
+.fw-bold.text-success {
+    color: #28a745 !important; /* Verde de Bootstrap */
+}
+
+.fw-bold.text-info {
+    color: #17a2b8 !important; /* Azul claro de Bootstrap */
+}
+
+/* Estilos para la línea divisoria */
+hr.my-4 {
+    border-top: 1px solid rgba(0,0,0,.1); /* Línea más suave */
+}
+
+/* Estilos para el botón de cerrar sesión */
+.btn-danger {
+    background-color: #dc3545; /* Rojo de Bootstrap */
+    border-color: #dc3545;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Rojo más oscuro al hover */
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+}
