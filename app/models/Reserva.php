@@ -5,7 +5,7 @@
  * Descripción: Clase modelo para la gestión de reservas de clases en la base de datos.
  * Contiene métodos para operaciones CRUD de reservas, incluyendo la obtención de
  * información de miembros y clases asociadas.
- * ACTUALIZADO: Añadido método countReservationsByClassId.
+ * ACTUALIZADO: Añadido método getTopClassesByReservations.
  */
 
 class Reserva {
@@ -118,6 +118,31 @@ class Reserva {
         } catch (PDOException $e) {
             error_log("Error al contar reservas por clase ID: " . $e->getMessage());
             return 0;
+        }
+    }
+
+    /**
+     * Obtiene las N clases más populares por número de reservas confirmadas.
+     * @param int $limit El número máximo de clases a devolver.
+     * @return array Un array de objetos con el nombre de la clase y el número de reservas.
+     */
+    public function getTopClassesByReservations($limit = 5) {
+        try {
+            $stmt = $this->pdo->prepare("
+                SELECT c.nombre AS clase_nombre, COUNT(r.id) AS total_reservas
+                FROM clases c
+                JOIN reservas r ON c.id = r.clase_id
+                WHERE r.estado = 'Confirmada'
+                GROUP BY c.nombre
+                ORDER BY total_reservas DESC
+                LIMIT :limit
+            ");
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log("Error al obtener las clases más populares: " . $e->getMessage());
+            return [];
         }
     }
 

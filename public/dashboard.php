@@ -5,13 +5,22 @@
  * Descripción: Página del dashboard principal.
  * Redirige a la página de login si el usuario no está autenticado.
  * Incluye la vista del dashboard específica según el rol del usuario.
+ * ACTUALIZADO: Obtiene datos para el gráfico de clases más populares.
  */
+
+// HABILITAR REPORTE DE ERRORES PARA DEPURACIÓN (ELIMINAR EN PRODUCCIÓN)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Incluir el archivo de configuración para asegurar que la sesión esté iniciada
 // y que la conexión PDO esté disponible si fuera necesaria.
 require_once '../config/config.php';
 // Incluir las funciones de ayuda para verificar roles
 require_once '../app/includes/helpers.php';
+// Incluir el modelo de Reserva para obtener datos para el gráfico
+require_once '../app/models/Reserva.php';
+
 
 // Verificar si el usuario NO ha iniciado sesión.
 if (!isset($_SESSION['usuario_id'])) {
@@ -26,16 +35,24 @@ $user_role = htmlspecialchars($_SESSION['rol_nombre'] ?? 'Desconocido');
 // Establecer un título para la página que se usará en el header.
 $page_title = 'Dashboard Principal';
 
+// Inicializar datos para el gráfico (solo para el administrador)
+$top_classes_data = [];
+if ($user_role === 'Administrador') {
+    $reservaModel = new Reserva($pdo);
+    $top_classes_data = $reservaModel->getTopClassesByReservations(5); // Obtener las 5 clases más populares
+}
+
 // Incluir el encabezado de la página (que incluye la barra lateral)
 include '../app/views/shared/header.php';
 
 // Cargar la vista del dashboard según el rol del usuario
 switch ($user_role) {
     case 'Administrador':
+        // Pasar los datos del gráfico a la vista del administrador
         include '../app/views/admin/dashboard.php';
         break;
     case 'Instructor':
-        // Vista para el dashboard del instructor (aún no creada)
+        // Incluir la vista del dashboard del instructor
         include '../app/views/instructor/dashboard.php';
         break;
     case 'Miembro':
